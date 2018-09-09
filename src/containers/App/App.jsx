@@ -1,10 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {ImageUploader} from 'components'
+import {ImageUploader, Card, Form} from 'components'
 
 const App = (props) => (
   <div className={props.className}>
-    <ImageUploader />
+    <Card
+      front={
+        ( <ImageUploader /> )
+      }
+      back={
+        (
+          <Form
+            fields={
+              {
+                "subscription key": {
+                  value: "",
+                  type: "password"
+                }
+              }
+            }
+          />
+        )
+      }
+    />
   </div>
 )
 
