@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class Form extends Component {
   constructor (props) {
@@ -7,6 +8,7 @@ class Form extends Component {
       fields: props.fields
     }
     this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
   onChange(name) {
     return (event) => {
@@ -21,15 +23,19 @@ class Form extends Component {
       }))
     }
   }
-  onSubmit() {
-    this.props.onSubmit(this.fields)
+  onSubmit(e) {
+    e.preventDefault()
+    this.props.onSubmit(this.state.fields)
     this.setState(() => ({
       fields: this.props.fields
     }))
   }
   render() {
     return (
-      <form>
+      <form className={this.props.className} onSubmit={this.onSubmit}>
+        <h3>
+          {this.props.title}
+        </h3>
         {
           Object.keys(this.state.fields).map(( item, index ) => (
             <input
@@ -43,11 +49,17 @@ class Form extends Component {
           ))
         }
         <div>
-          <button onSubmit={this.onSubmit}>Submit</button>
+          <button type='submit' >Submit</button>
         </div>
       </form>
     )
   }
+}
+
+Form.propTypes = {
+  fields: PropTypes.object,
+  className: PropTypes.string,
+  title: PropTypes.string
 }
 
 export default Form
