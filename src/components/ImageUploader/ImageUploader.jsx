@@ -7,14 +7,20 @@ class ImageUploader extends Component {
     this.state = {
       url: ""
     }
+    this.onChange = this.onChange.bind(this)
   }
+
+  onChange() {
+
+  }
+
   render() {
     return (
       <div className={this.props.className}>
         <div className="preview-container">
-          <img src="" alt="" />
+          <img src={this.state.url} alt="" />
         </div>
-        <input type="file" />
+        <input type="file" onChange={this.onChange}/>
       </div>
     )
   }
