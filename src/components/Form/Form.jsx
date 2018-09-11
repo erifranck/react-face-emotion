@@ -15,6 +15,7 @@ class Form extends Component {
       const value = event.target.value
       this.setState((prevState) => ({
         fields: {
+          ...prevState.fields,
           [name]: {
             ...prevState.fields[name],
             value
