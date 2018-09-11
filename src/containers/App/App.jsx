@@ -16,6 +16,10 @@ const App = (props) => (
               Upload your image to compare
             </h3>
             <ImageUploader upload={props.saveImage}/>
+            {
+              props.uploadImage &&
+                <button onClick={() => props.detectFace(props.uploadImage.link)}>Evaluate</button>
+            }
           </Fragment>
         )
       }
