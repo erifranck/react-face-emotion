@@ -2,7 +2,6 @@ import styled, {withTheme} from 'styled-components'
 import UploaderComponent from './ImageUploader.jsx'
 
 export const ImageUploader = withTheme(styled(UploaderComponent)`
-  width: 400px;
   img {
     max-width: 100%;
     max-height: 200px;

@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import CardComponent from './Card.jsx'
 
 export const Card = styled(CardComponent)`
-  width: 420px;
-  height: 280px;
+  width: 520px;
+  height: 380px;
   perspective: 1000px;
   .card-content{
     transition: 0.6s;
