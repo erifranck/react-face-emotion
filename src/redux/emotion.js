@@ -50,7 +50,7 @@ export default function reducer(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: action.error,
-        data: action.response
+        error: action.error
       }
     default:
       return state
