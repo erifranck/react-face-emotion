@@ -12,7 +12,7 @@
 ├── yarn.lock
 ├── .eslintrc
 ├── public
-|   └── index.js
+|   └── index.html
 ├── src
 |   ├── components
 |   |   └── [component-folder]
