@@ -22,6 +22,8 @@
     "styled-components": "^3.4.5"
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.5"
+    "redux-devtools-extension": "^2.13.5",
+    "standard": "^11.0.1",
+    "standard-react": "^4.0.0"
   }
 }
