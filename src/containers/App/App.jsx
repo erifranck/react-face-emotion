@@ -2,6 +2,7 @@ import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {ImageUploader, Card, Form} from 'components'
 import {saveSettings} from 'redux/settings'
+import {saveImage, detectFace} from 'redux/emotion'
 import {connect} from 'react-redux'
 
 const App = (props) => (
@@ -14,7 +15,7 @@ const App = (props) => (
             <h3 style={{textAlign: "center", margin: "10px 0px"}}>
               Upload your image to compare
             </h3>
-            <ImageUploader />
+            <ImageUploader upload={props.saveImage}/>
           </Fragment>
         )
       }
@@ -26,6 +27,10 @@ const App = (props) => (
             fields={
               {
                 "subscription key": {
+                  value: "",
+                  type: "password"
+                },
+                "client id": {
                   value: "",
                   type: "password"
                 }
@@ -44,10 +49,15 @@ const App = (props) => (
 
 App.propTypes = {
   className: PropTypes.string,
+  detectFace: PropTypes.func,
+  saveImage: PropTypes.func,
+  saveSettings: PropTypes.func,
   settings: PropTypes.object,
-  saveSettings: PropTypes.func
+  uploadImage: PropTypes.object
 }
 
 export default connect(state => ({
-  settings: state.settings.data
-}), {saveSettings})(App)
+  faceInfo: state.emotion.data,
+  settings: state.settings.data,
+  uploadImage: state.emotion.uploadImage
+}), {saveSettings, saveImage, detectFace})(App)
