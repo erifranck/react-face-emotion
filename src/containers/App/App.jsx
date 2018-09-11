@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {ImageUploader, Card, Form} from 'components'
 import {saveSettings} from 'redux/settings'
@@ -9,7 +9,12 @@ const App = (props) => (
     <Card
       flip={!props.settings || props.faceInfo}
       front={
-        ( <ImageUploader /> )
+        (
+          <Fragment>
+            <h3>Upload your image to compare</h3>
+            <ImageUploader />
+          </Fragment>
+        )
       }
       back={
         !props.settings ? (
