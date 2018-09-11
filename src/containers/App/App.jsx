@@ -11,7 +11,9 @@ const App = (props) => (
       front={
         (
           <Fragment>
-            <h3>Upload your image to compare</h3>
+            <h3 style={{textAlign: "center", margin: "10px 0px"}}>
+              Upload your image to compare
+            </h3>
             <ImageUploader />
           </Fragment>
         )
