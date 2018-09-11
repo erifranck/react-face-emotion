@@ -44,8 +44,8 @@ const App = (props) => (
             }}
           />
         ) : (
-          <div>
-            here is emoji
+          <div className="show-image-detected">
+            <img src={props.uploadImage.link} alt=""/>
           </div>
         )
       }
@@ -70,5 +70,5 @@ export default connect(state => ({
 }), dispatch => ({
   saveSettings: (data) => dispatch(saveSettings(data)),
   saveImage: (img) => dispatch(saveImage(img)),
-  detectFace: (img) => dispatch(detectFace(img))
+  detectFace: (img) => () => dispatch(detectFace(img))
 }))(App)
