@@ -1,4 +1,7 @@
-import {detectFace as detectFaceRequest} from 'service/microsoftFace'
+import {
+  detectFace as detectFaceRequest,
+  detectEmotion as detectEmotionRequest
+} from 'service/microsoftFace'
 import {uploadImage} from 'service/imgur'
 
 const FETCH = 'apiface/emotion/FETCH'
@@ -100,6 +103,26 @@ export const detectFace = (img) => (dispatch, getState) => {
     .catch(error => {
       dispatch({
         type: DETECT_FACE_FAIL,
+        error
+      })
+    })
+}
+
+export const detectEmotion = (img) => (dispatch, getState) => {
+  const apiKey = getState().settings.data['subscription key'].value
+  dispatch({
+    type: FETCH
+  })
+  detectEmotionRequest(img, apiKey)
+    .then(response => {
+      dispatch({
+        type: DETECT_EMOTION_SUCCESS,
+        response: response.data
+      })
+    })
+    .catch(error => {
+      dispatch({
+        type: DETECT_EMOTION_FAIL,
         error
       })
     })
