@@ -85,8 +85,8 @@ export const detectFace = (img) => (dispatch, getState) => {
     .then(response => {
       dispatch({
         type: DETECT_FACE_SUCCESS,
+        response: response.data
       })
-      response: response.data
     })
     .catch(error => {
       dispatch({
