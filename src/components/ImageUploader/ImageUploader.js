@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled, {withTheme} from 'styled-components'
 import UploaderComponent from './ImageUploader.jsx'
 
-export const ImageUploader = styled(UploaderComponent)`
+export const ImageUploader = withTheme(styled(UploaderComponent)`
   width: 400px;
   img {
     max-width: 100%;
@@ -17,4 +17,22 @@ export const ImageUploader = styled(UploaderComponent)`
     height: 100%;
     width: 100%;
   }
-`
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    button {
+      height: 20px;
+      border: none;
+      margin-right: 10px;
+      &.btn-primary {
+        background-color: ${({theme}) => theme.colors.primary};
+        color: ${({theme}) => theme.colors.inverse};
+      }
+      &.btn-secondary {
+        background-color: ${({theme}) => theme.colors.secondary};
+      }
+    }
+  }
+`)
