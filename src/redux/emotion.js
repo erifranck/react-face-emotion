@@ -10,8 +10,8 @@ const DETECT_FACE_FAIL = 'apiface/emotion/DETECT_FACE_FAIL'
 
 const INITIAL_STATE = {
   loading: false,
-  data: {},
-  uploadImage: {},
+  data: undefined,
+  uploadImage: undefined,
   error: undefined
 }
 
@@ -26,7 +26,7 @@ export default function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        uploadImage: action.response
+        uploadImage: action.response.data
       }
     case SAVE_FAIL:
       return {
@@ -82,6 +82,12 @@ export const detectFace = (img) => (dispatch, getState) => {
     type: DETECT_FACE
   })
   detectFaceRequest(img, apiKey)
+    .then(response => {
+      dispatch({
+        type: DETECT_FACE_SUCCESS,
+      })
+      response: response.data
+    })
     .catch(error => {
       dispatch({
         type: DETECT_FACE_FAIL,
