@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {ImageUploader, Card, Form} from 'components'
 import {saveSettings} from 'redux/settings'
-import {saveImage, detectFace, detectEmotion} from 'redux/emotion'
+import {saveImage, detectFace} from 'redux/emotion'
 import {connect} from 'react-redux'
 
 const App = (props) => (
@@ -21,7 +21,6 @@ const App = (props) => (
                 (
                   <Fragment>
                     <button onClick={props.detectFace(props.uploadImage.link)}>detect face</button>
-                    <button onClick={props.detectEmotion(props.uploadImage.link)}>detect emotion</button>
                   </Fragment>
                 )
             }
@@ -71,6 +70,5 @@ export default connect(state => ({
 }), dispatch => ({
   saveSettings: (data) => dispatch(saveSettings(data)),
   saveImage: (img) => dispatch(saveImage(img)),
-  detectFace: (img) => dispatch(detectFace(img)),
-  detectEmotion: (img) => dispatch(detectEmotion(img))
+  detectFace: (img) => dispatch(detectFace(img))
 }))(App)

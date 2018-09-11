@@ -13,13 +13,3 @@ export const detectFace = (img, apiKey) =>
     }
   })
 
-export const detectEmotion = (img, apiKey) =>
-  axios
-  .post(baseUrl + '/recognize?', {
-    url: img
-  }, {
-    headers: {
-      "Ocp-Apim-Subscription-Key": apiKey,
-      "Content-Type": "application/json"
-    }
-  })
