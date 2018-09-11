@@ -48,18 +48,6 @@ export default function reducer(state = INITIAL_STATE, action) {
         loading: false,
         error: action.error
       }
-    case DETECT_EMOTION_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        emotion: action.response
-      }
-    case DETECT_EMOTION_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: action.error
-      }
     default:
       return state
   }
