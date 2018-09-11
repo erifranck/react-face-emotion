@@ -4,16 +4,20 @@ import {App} from 'containers'
 import {ThemeProvider} from 'styled-components'
 import {theme} from 'theme'
 import {Provider} from 'react-redux'
-import store from 'redux/createStore'
+import { PersistGate } from 'redux-persist/integration/react'
+
+import store, {persistor} from 'redux/createStore'
 import 'global-styles'
 
 ReactDOM.render(
   (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   )
   ,
-  document.getElementById("root"))
+  document.getElementById('root'))
