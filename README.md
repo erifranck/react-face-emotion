@@ -33,3 +33,7 @@
 └── README.md
 ```
 
+## insert Information for api request
+
+* You can insert in the main form the Apy from microsoft in the field subscription key, you can create get [here](https://azure.microsoft.com/en-us/services/cognitive-services/face/)
+* You can insert Client ID to save image with imgur[https://api.imgur.com/#registerapp]
