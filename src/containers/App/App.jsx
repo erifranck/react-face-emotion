@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
-import {ImageUploader, Card, Form} from 'components'
+import {ImageUploader, Card, Form, ImageFaceDetector} from 'components'
 import {saveSettings} from 'redux/settings'
 import {saveImage, detectFace} from 'redux/emotion'
 import {connect} from 'react-redux'
@@ -44,9 +44,14 @@ const App = (props) => (
             }}
           />
         ) : (
-          <div className="show-image-detected">
-            <img src={props.uploadImage.link} alt=""/>
-          </div>
+          props.faceInfo &&
+            <ImageFaceDetector
+              link={props.uploadImage.link}
+              width={props.faceInfo[0].faceRectangle.width}
+              height={props.faceInfo[0].faceRectangle.height}
+              top={props.faceInfo[0].faceRectangle.top}
+              left={props.faceInfo[0].faceRectangle.left}
+            />
         )
       }
     />
@@ -60,6 +65,7 @@ App.propTypes = {
   saveImage: PropTypes.func,
   saveSettings: PropTypes.func,
   settings: PropTypes.object,
+  faceInfo: PropTypes.array,
   uploadImage: PropTypes.object
 }
 
