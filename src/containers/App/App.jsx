@@ -5,6 +5,9 @@ import {saveSettings} from 'redux/settings'
 import {saveImage, detectFace} from 'redux/emotion'
 import {connect} from 'react-redux'
 
+const imgurClientId = JSON.stringify(process.env.REACT_APP_IMGUR_CLIENT_ID)
+const microsoftKey = JSON.stringify(process.env.REACT_APP_MICROSOFT_APIKEY)
+
 const App = (props) => (
   <div className={props.className}>
     <Card
@@ -34,11 +37,11 @@ const App = (props) => (
             onSubmit={props.saveSettings}
             fields={{
               'subscription key': {
-                value: '',
+                value: microsoftKey,
                 type: 'password'
               },
               'client id': {
-                value: '',
+                value: imgurClientId,
                 type: 'password'
               }
             }}
