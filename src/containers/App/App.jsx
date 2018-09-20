@@ -5,8 +5,8 @@ import {saveSettings} from 'redux/settings'
 import {saveImage, detectFace} from 'redux/emotion'
 import {connect} from 'react-redux'
 
-const imgurClientId = JSON.stringify(process.env.REACT_APP_IMGUR_CLIENT_ID)
-const microsoftKey = JSON.stringify(process.env.REACT_APP_MICROSOFT_APIKEY)
+const imgurClientId = process.env.REACT_APP_IMGUR_CLIENT_ID
+const microsoftKey = process.env.REACT_APP_MICROSOFT_APIKEY
 
 const App = (props) => (
   <div className={props.className}>
@@ -20,14 +20,6 @@ const App = (props) => (
               Upload your image to compare
             </h3>
             <ImageUploader upload={props.saveImage} />
-            {
-              props.uploadImage &&
-                (
-                  <Fragment>
-                    <button onClick={props.detectFace(props.uploadImage.link)}>detect face</button>
-                  </Fragment>
-                )
-            }
           </Fragment>
         )
       }
