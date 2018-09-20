@@ -75,6 +75,7 @@ export const detectFace = (img) => (dispatch, getState) => {
 
 export const saveImage = (img) => (dispatch, getState) => {
   const clientId = getState().settings.data['client id'].value
+  console.log(clientId)
   dispatch({
     type: FETCH
   })
@@ -84,7 +85,7 @@ export const saveImage = (img) => (dispatch, getState) => {
         type: SAVE_SUCCESS,
         response: response.data
       })
-      detectFace(response.data.data.link)
+      detectFace(response.data.data.link)(dispatch, getState)
     })
     .catch(error => {
       dispatch({
