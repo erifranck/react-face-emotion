@@ -53,26 +53,6 @@ export default function reducer(state = INITIAL_STATE, action) {
   }
 }
 
-export const saveImage = (img) => (dispatch, getState) => {
-  const clientId = getState().settings.data['client id'].value
-  dispatch({
-    type: FETCH
-  })
-  uploadImage(img, clientId)
-    .then(response => {
-      dispatch({
-        type: SAVE_SUCCESS,
-        response: response.data
-      })
-    })
-    .catch(error => {
-      dispatch({
-        type: SAVE_FAIL,
-        error
-      })
-    })
-}
-
 export const detectFace = (img) => (dispatch, getState) => {
   const apiKey = getState().settings.data['subscription key'].value
   dispatch({
@@ -92,3 +72,25 @@ export const detectFace = (img) => (dispatch, getState) => {
       })
     })
 }
+
+export const saveImage = (img) => (dispatch, getState) => {
+  const clientId = getState().settings.data['client id'].value
+  dispatch({
+    type: FETCH
+  })
+  uploadImage(img, clientId)
+    .then(response => {
+      dispatch({
+        type: SAVE_SUCCESS,
+        response: response.data
+      })
+      detectFace(response.data.data.link)
+    })
+    .catch(error => {
+      dispatch({
+        type: SAVE_FAIL,
+        error
+      })
+    })
+}
+
