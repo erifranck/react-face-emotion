@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
-import {ImageUploader, Card, Form} from 'components'
+import {ImageUploader, Card, Form, ImageFaceDetector} from 'components'
 import {saveSettings} from 'redux/settings'
 import {saveImage, detectFace} from 'redux/emotion'
 import {connect} from 'react-redux'
@@ -18,7 +18,11 @@ const App = (props) => (
             <ImageUploader upload={props.saveImage} />
             {
               props.uploadImage &&
-                <button onClick={() => props.detectFace(props.uploadImage.link)}>Evaluate</button>
+                (
+                  <Fragment>
+                    <button onClick={props.detectFace(props.uploadImage.link)}>detect face</button>
+                  </Fragment>
+                )
             }
           </Fragment>
         )
@@ -40,9 +44,14 @@ const App = (props) => (
             }}
           />
         ) : (
-          <div>
-            here is emoji
-          </div>
+          props.faceInfo &&
+            <ImageFaceDetector
+              link={props.uploadImage.link}
+              width={props.faceInfo[0].faceRectangle.width}
+              height={props.faceInfo[0].faceRectangle.height}
+              top={props.faceInfo[0].faceRectangle.top}
+              left={props.faceInfo[0].faceRectangle.left}
+            />
         )
       }
     />
@@ -52,10 +61,11 @@ const App = (props) => (
 App.propTypes = {
   className: PropTypes.string,
   detectFace: PropTypes.func,
+  detectEmotion: PropTypes.func,
   saveImage: PropTypes.func,
-  faceInfo: PropTypes.object,
   saveSettings: PropTypes.func,
   settings: PropTypes.object,
+  faceInfo: PropTypes.array,
   uploadImage: PropTypes.object
 }
 
@@ -63,4 +73,8 @@ export default connect(state => ({
   faceInfo: state.emotion.data,
   settings: state.settings.data,
   uploadImage: state.emotion.uploadImage
-}), {saveSettings, saveImage, detectFace})(App)
+}), dispatch => ({
+  saveSettings: (data) => dispatch(saveSettings(data)),
+  saveImage: (img) => dispatch(saveImage(img)),
+  detectFace: (img) => () => dispatch(detectFace(img))
+}))(App)
