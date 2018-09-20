@@ -6,7 +6,7 @@ export const uploadImage = (img, clientId) => {
   return axios
     .post('https://api.imgur.com/3/upload', formData, {
       headers: {
-        'Authorization': 'Client-ID ' + clientId,
+        'Authorization': `Client-ID ${clientId}`,
         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
       }
     })
