@@ -8,14 +8,14 @@ import {connect} from 'react-redux'
 const App = (props) => (
   <div className={props.className}>
     <Card
-      flip={!props.settings || props.faceInfo}
+      flip={(!props.settings || props.faceInfo) ? true : false}
       front={
         (
           <Fragment>
-            <h3 style={{textAlign: "center", margin: "10px 0px"}}>
+            <h3 style={{textAlign: 'center', margin: '10px 0px'}}>
               Upload your image to compare
             </h3>
-            <ImageUploader upload={props.saveImage}/>
+            <ImageUploader upload={props.saveImage} />
             {
               props.uploadImage &&
                 <button onClick={() => props.detectFace(props.uploadImage.link)}>Evaluate</button>
@@ -26,20 +26,18 @@ const App = (props) => (
       back={
         !props.settings ? (
           <Form
-            title="Insert your api information"
+            title='Insert your api information'
             onSubmit={props.saveSettings}
-            fields={
-              {
-                "subscription key": {
-                  value: "",
-                  type: "password"
-                },
-                "client id": {
-                  value: "",
-                  type: "password"
-                }
+            fields={{
+              'subscription key': {
+                value: '',
+                type: 'password'
+              },
+              'client id': {
+                value: '',
+                type: 'password'
               }
-            }
+            }}
           />
         ) : (
           <div>
@@ -55,6 +53,7 @@ App.propTypes = {
   className: PropTypes.string,
   detectFace: PropTypes.func,
   saveImage: PropTypes.func,
+  faceInfo: PropTypes.object,
   saveSettings: PropTypes.func,
   settings: PropTypes.object,
   uploadImage: PropTypes.object
