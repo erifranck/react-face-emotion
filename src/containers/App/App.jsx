@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 const App = (props) => (
   <div className={props.className}>
     <Card
-      flip={!props.settings || props.faceInfo}
+      flip={(!props.settings || props.faceInfo) ? true : false}
       front={
         (
           <Fragment>
