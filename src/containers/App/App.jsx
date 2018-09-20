@@ -10,6 +10,7 @@ const microsoftKey = JSON.stringify(process.env.REACT_APP_MICROSOFT_APIKEY)
 
 const App = (props) => (
   <div className={props.className}>
+    {props.loading && <p>loading...</p>}
     <Card
       flip={(!props.settings || props.faceInfo) ? true : false}
       front={
@@ -66,6 +67,7 @@ App.propTypes = {
   detectFace: PropTypes.func,
   detectEmotion: PropTypes.func,
   saveImage: PropTypes.func,
+  loading: PropTypes.bool,
   saveSettings: PropTypes.func,
   settings: PropTypes.object,
   faceInfo: PropTypes.array,
@@ -74,6 +76,7 @@ App.propTypes = {
 
 export default connect(state => ({
   faceInfo: state.emotion.data,
+  loading: state.emotion.loading,
   settings: state.settings.data,
   uploadImage: state.emotion.uploadImage
 }), dispatch => ({
