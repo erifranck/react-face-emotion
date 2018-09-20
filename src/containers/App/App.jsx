@@ -40,7 +40,7 @@ const App = (props) => (
             }}
           />
         ) : (
-          props.faceInfo &&
+          props.faceInfo && props.faceInfo[0] &&
             <ImageFaceDetector
               link={props.uploadImage.link}
               width={props.faceInfo[0].faceRectangle.width}
